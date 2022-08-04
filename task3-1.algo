@@ -1,0 +1,12 @@
+/**
+a given date as 6 digits 
+*/
+
+ALGORITHM translate_date
+VAR
+    date, day, month_nbr := INTEGER;
+    month := STRING;
+BEGIN
+    Write("enter the date numbre");
+    Read(date);
+END

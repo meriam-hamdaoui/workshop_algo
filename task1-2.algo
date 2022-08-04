@@ -1,0 +1,55 @@
+FUNCTION is_separator(d: CHAR) : BOOLEAN
+VAR
+BEGIN
+    IF (d = " " OR d = "," OR d = ";" OR d = ".") THEN
+        RETURN TRUE;
+    ELSE
+    RETURN FALSE;
+    END_IF    
+END
+
+FUNCTION is_letter(d: CHAR) : BOOLEAN
+VAR
+BEGIN
+    IF (d >= "a" AND d <= "z" OR d >= "A" AND d <= "Z") THEN
+        RETURN TRUE ;
+    ELSE
+        RETURN FALSE ;
+    END_IF    
+END
+
+FUNCTION is_digits(d: CHAR) : BOOLEAN
+VAR
+BEGIN
+    IF (d >= 0 AND d <= 9) THEN
+        RETURN TRUE ;
+    ELSE
+        RETURN FALSE ;
+    END_IF 
+END
+
+
+ALGORITHM statistic
+VAR
+    nbr_separator, nbr_letter, nbr_digits, nbr_others, i : INTEGER := 0;
+    sentence : STRING;
+BEGIN
+    Write("enter your sentence");
+    Read(sentences);
+    WHILE (sentence[i] <> "#" AND i <> sentence.length - 1) DO
+        IF (is_separator(c)) THEN
+            nbr_separator := nbr_separator + 1;
+        ELSE_IF (is_letter(c)) THEN
+            nbr_letter := nbr_letter + 1;
+        ELSE_IF (is_digits(c)) THEN
+            nbr_digits := nbr_digits + 1;
+        ELSE
+            nbr_others := nbr_others + 1;
+        END_IF
+        i := i +1;
+    END_WHILE
+    Write("separator numbers", nbr_separator);
+    Write("letter numbers", nbr_letter);
+    Write("digit numbers", nbr_digits);
+    Write("other caracters", nbr_others)
+END

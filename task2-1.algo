@@ -1,0 +1,62 @@
+/**
+A car rental organization offers two rental formulas:
+1- Rental by the kilometer:
+  a- for the first 100 kilometers: rate r1 per km,
+  b- for the kilometers from 101 to 1000: rate r2 per km,
+  c- beyond 1000 kilometers: rate r3 per km.
+2- Daily rate: Unlimited mileage at the price per day p_d.
+
+In both cases, it is necessary to add an insurance (whose cost per day is ins) and the value-added tax (VAT) .
+The quantities r1, r2, r3, p_d, ins as well as the rate of VAT are considered as constants.
+Take, for example: r1 = 0.7 r2 = 0.4 r3 = 0.2 p_d = 100 ins= 0.3 (expressed in dinars) and rate VAT = 0.18.
+
+
+Write an algorithm which, given the total number of kilometers and the number of days of location, calculates the total costs of the two tariffs and indicates by a label the most suitable solution advantageous for the 
+
+*/
+
+ALGORITHM suitable_solution
+VAR
+    // inputs
+    nbr_km, nbr_days : INTEGER;
+    //outputs
+    cost_by_km, cosy_by_days : FLOAT;
+CONST
+    r1 : FLOAT := 0.7;
+    r2 : FLOAT := 0.4;
+    r3 : FLOAT := 0.2;
+    p_d : FLOAT := 100;
+    ins : FLOAT := 0.3;
+    vat : FLOAT := 0.18;
+BEGIN
+    // read the inputs
+    Write("Give the number of kilometers")
+    Read(nbr_km)
+    Write("Give the number of days")
+    Read(nbr_days)
+
+    // start by cost for daily rental 
+    cosy_by_days := nbr_days * (p_d + ins) * (1+vat);
+
+    // cost for rental by km 
+    IF (nbr_km <= 100) THEN
+        cost_by_km := nbr_km * r1;
+    ELSE_IF (nbr_km <= 1000) THEN
+        cost_by_km := (nbr_km - 100) * r2 + 100 * r1;
+    ELSE
+        cost_by_km := (nbr_km - 1000) * r3 + 900 * r2 + 100 * r1;
+    END_IF
+
+    // add insurance and vat
+    cost_by_km := cost_by_km + (nbr_days * ins);
+    cost_by_km := cost_by_km + (cost_by_km * vat);
+
+    // final result
+    IF (cost_by_km < cosy_by_days) THEN
+        Write("it is better to use the rental by km. The cost is : ", cost_by_km)
+    ELSE
+        Write("it is better to use the rental by day. The cost is : ", cost_by_days)
+    END_IF
+
+
+END

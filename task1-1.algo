@@ -1,0 +1,29 @@
+//we consider three integer vars x, y and z
+// we want to permutate their values in a circular way
+// example x = 3, y = -1,  z = 7  ==>  z = 3, y = 7, x = -1 
+
+ALGORITHM circular_permutation
+VAR
+    x, y, z, permut : INTEGER;
+    // permut variable gonna be used to stock one of the values till other get changed
+BEGIN    
+     // write message on screen for the user
+    Write("Give the x number");
+    // read the variable from keyboard
+    Read(x);
+    Write("Give the y number");
+    Read(y);
+    Write("Give the z number");
+    Read(z);
+
+    // permutate values
+    permut := x; // stock the x value in permut
+    x := y;
+    y := z;
+    z := permut;
+
+    // send back the new values
+    Write(x)
+    Write(y)
+    Write(z)
+END
